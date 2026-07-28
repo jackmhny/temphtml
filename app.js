@@ -13,7 +13,7 @@
   const REPLAY_TICK_MS = 50;
   const MAX_REPLAY_EVENTS = 6000;
   const DIRS = [[1,0],[-1,0],[0,1],[0,-1]];
-  const PASTELS = ['#f7cbd6','#cfe4ff','#d1f0cf','#ffeda6','#e2d0ff','#ffd2b5','#c8efeb','#f4cdec','#e3f0b6','#ead8c2'];
+  const PASTELS = ['#f7aec2','#aed2ff','#b1e6ad','#ffe375','#cdafff','#ffbc8f','#9fe5de','#f0ade2','#d8ea8c','#e0c09c'];
   const ACCENT = '#6557d9';
 
   let profile = loadProfile();
