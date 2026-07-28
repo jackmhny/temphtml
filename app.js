@@ -6,7 +6,7 @@ let profile=load(),selected=profile.selected||'classic',g=null,timer=null,pendin
 
 function defaults(){return{levels:{easy:1,classic:1,hard:1},solved:0,total:0,streak:0,best:0,selected:'classic'}}
 function load(){try{const raw=JSON.parse(localStorage.getItem(KEY)||'{}'),base=defaults();return{...base,...raw,levels:{...base.levels,...(raw.levels||{})}}}catch{return defaults()}}
-function save(){localStorage.setItem(KEY,JSON.stringify(profile))}
+function save(){try{localStorage.setItem(KEY,JSON.stringify(profile))}catch{}}
 function rng(seed){let x=seed>>>0;return()=>{x=(x+0x6D2B79F5)>>>0;let t=x;t=Math.imul(t^t>>>15,t|1);t^=t+Math.imul(t^t>>>7,t|61);return((t^t>>>14)>>>0)/4294967296}}
 function hash(s){let h=2166136261;for(const c of String(s)){h^=c.charCodeAt(0);h=Math.imul(h,16777619)}return h>>>0}
 function shuffle(a,r){for(let i=a.length-1;i;i--){const j=Math.floor(r()*(i+1));[a[i],a[j]]=[a[j],a[i]]}return a}
