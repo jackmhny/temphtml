@@ -7,6 +7,8 @@
   --danger:#b42318;
   --ok:#18794e;
   --accent:#6557d9;
+  --accent-soft:#f3f1ff;
+  --accent-line:#b9b2ef;
   font-family:Inter,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
   color-scheme:light;
 }
@@ -23,7 +25,7 @@ button{touch-action:manipulation;user-select:none}
 .by{font:11px ui-monospace,SFMono-Regular,Menlo,monospace;color:var(--muted);letter-spacing:.03em}
 .btn,.mode,.cell,.text-btn{border:1px solid #111;border-radius:3px;background:#fff;cursor:pointer}
 .btn{min-height:42px;padding:0 14px;font-weight:750;display:inline-flex;align-items:center;justify-content:center;text-decoration:none}
-.btn.primary{background:#111;color:#fff}
+.btn.primary{background:var(--accent);border-color:var(--accent);color:#fff}
 .btn:disabled{cursor:default;opacity:.45}
 .btn:active:not(:disabled),.mode:active,.text-btn:active{transform:translateY(1px)}
 .text-btn{border-color:var(--line);min-height:32px;padding:0 10px;font-size:12px;font-weight:700}
@@ -33,7 +35,7 @@ button{touch-action:manipulation;user-select:none}
 .panel h1{padding:18px;border-bottom:1px solid var(--line)}
 .modes{display:grid;gap:8px;padding:10px}
 .mode{min-height:78px;padding:12px 14px;display:grid;grid-template-columns:62px 1fr auto;align-items:center;text-align:left;border-color:var(--line)}
-.mode[aria-pressed="true"]{border-color:#111;box-shadow:inset 0 0 0 1px #111;background:#f2f2ee}
+.mode[aria-pressed="true"]{border-color:var(--accent);box-shadow:inset 0 0 0 1px var(--accent);background:var(--accent-soft)}
 .size{font:800 16px ui-monospace,SFMono-Regular,Menlo,monospace}
 .mode small{color:var(--muted)}
 .start{padding:10px;border-top:1px solid var(--line)}
@@ -52,11 +54,11 @@ button{touch-action:manipulation;user-select:none}
 .history-main span{display:block;margin-top:4px;color:var(--muted);font:11px ui-monospace,SFMono-Regular,Menlo,monospace;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 .history-actions{display:flex;gap:7px}
 .history-actions .btn{min-height:38px;padding:0 11px;font-size:12px}
-.history-actions .camera{width:40px;padding:0;font-size:17px}
+.history-actions .camera{width:40px;padding:0;font-size:17px;color:var(--accent);border-color:var(--accent-line);background:var(--accent-soft)}
 .gamehead{display:grid;grid-template-columns:auto 1fr auto;align-items:center;gap:12px;min-height:64px;border-bottom:1px solid var(--line)}
-.back{width:42px;padding:0}
+.back{width:42px;padding:0;background:var(--accent);border-color:var(--accent);color:#fff}
 .gamebrand{text-align:center}
-.gamebrand strong{display:block}
+.gamebrand strong{display:block;color:var(--accent)}
 .gamebrand span{color:var(--muted);font:11px ui-monospace,SFMono-Regular,Menlo,monospace}
 .meta{display:flex;gap:18px}
 .meta div{text-align:right}
@@ -78,11 +80,11 @@ button{touch-action:manipulation;user-select:none}
 .cell.lastc{border-right:0}
 .cell.lastr{border-bottom:0}
 .cell::after{content:"";position:absolute;inset:2px;border:1px solid transparent}
-.cell:focus-visible{outline:3px solid #111;outline-offset:-4px;z-index:2}
+.cell:focus-visible{outline:3px solid var(--accent);outline-offset:-4px;z-index:2}
 .cell.flash::after{border-color:var(--danger);background:rgba(180,35,24,.11)}
 .x,.star{position:absolute;pointer-events:none;opacity:0;transform:scale(.6);transition:.12s}
-.x{font-size:clamp(14px,4vw,28px);font-weight:500;color:rgba(17,17,17,.58)}
-.star{font-size:clamp(16px,4.5vw,31px);font-weight:900;color:var(--accent)}
+.x{font-size:clamp(20px,5.2vw,40px);font-weight:400;line-height:1;color:rgba(17,17,17,.18)}
+.star{font-size:clamp(16px,4.5vw,31px);font-weight:900;color:#111}
 .cell[data-state="x"] .x,.cell[data-state="star"] .star{opacity:1;transform:scale(1)}
 .tools{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-top:10px}
 .tools .btn{border-color:var(--line)}
@@ -112,6 +114,7 @@ button{touch-action:manipulation;user-select:none}
 .share-actions,.actions{display:grid;grid-template-columns:1fr 1fr;gap:8px;padding:0 20px 10px}
 .actions{padding-bottom:20px}
 .actions.one{grid-template-columns:1fr}
+#completeHome{color:var(--accent);border-color:var(--accent-line);background:var(--accent-soft)}
 .link-btn{line-height:40px}
 .toast{position:fixed;left:50%;bottom:max(18px,env(safe-area-inset-bottom));transform:translate(-50%,20px);background:#111;color:#fff;padding:11px 15px;border:1px solid #111;opacity:0;pointer-events:none;transition:.18s;z-index:20;font-size:13px;max-width:calc(100vw - 28px);white-space:nowrap}
 .toast.show{opacity:1;transform:translate(-50%,0)}
