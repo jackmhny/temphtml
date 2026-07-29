@@ -2,117 +2,48 @@
 <html lang="en">
 <head>
   <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-  <meta name="theme-color" content="#f5f5f2">
-  <title>Stardoku — by jackmhny</title>
-  <link rel="stylesheet" href="style.css?v=11">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#ffffff">
+  <title>temphtml</title>
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <section id="intro" class="view">
-    <div class="wrap">
-      <header class="top">
-        <div class="brand"><span class="mark">★</span><span>STARDOKU</span><span class="by">by jackmhny</span></div>
-      </header>
+  <main>
+    <header class="site-header">
+      <span class="site-mark" aria-hidden="true">~/</span>
+      <h1>temphtml</h1>
+    </header>
 
-      <main class="intro">
-        <section class="panel size-panel">
-          <h1>Board size</h1>
-          <div class="modes">
-            <button class="mode" data-d="easy" aria-pressed="false"><span class="size">6×6</span><span><b>Easy</b></span><small data-level="easy">Level 1</small></button>
-            <button class="mode" data-d="classic" aria-pressed="true"><span class="size">8×8</span><span><b>Classic</b></span><small data-level="classic">Level 1</small></button>
-            <button class="mode" data-d="hard" aria-pressed="false"><span class="size">10×10</span><span><b>Hard</b></span><small data-level="hard">Level 1</small></button>
-          </div>
-          <div class="start"><button id="start" class="btn primary">Start level 1</button></div>
-        </section>
-
-        <section class="stats">
-          <div class="stat"><span>Solved</span><strong id="solved">0</strong></div>
-          <div class="stat"><span>Total score</span><strong id="total">0</strong></div>
-          <div class="stat"><span>Best streak</span><strong id="best">0</strong></div>
-        </section>
-
-        <section class="history-panel">
-          <div class="section-head"><h2>History</h2><button id="clearHistory" class="text-btn" hidden>Clear</button></div>
-          <div id="historyList" class="history-list"></div>
-        </section>
-      </main>
-    </div>
-  </section>
-
-  <section id="gameview" class="view" hidden>
-    <div class="wrap">
-      <header class="gamehead">
-        <button id="home" class="btn back" aria-label="Back">←</button>
-        <div class="gamebrand"><strong>STARDOKU</strong><span id="diff">Classic / 8×8</span></div>
-        <div class="meta">
-          <div><span>Level</span><b id="level">001</b></div>
-          <div><span>Score</span><b id="score">0</b></div>
-          <div><span>Strikes</span><i class="strikes" id="strikes"><i class="strike"></i><i class="strike"></i><i class="strike"></i></i></div>
+    <p class="section-label">play / read</p>
+    <section class="primary" aria-label="projects">
+      <a class="tile" href="stardoku/">
+        <div>
+          <h2>stardoku</h2>
+          <p>a one-star-per-row puzzle with generated boards, replays, and challenges.</p>
         </div>
-      </header>
-      <main class="game">
-        <div class="status"><strong id="stars">0 / 8 stars</strong><span class="status-right"><em id="challengeTarget" hidden>Beat 00:00</em><span id="time">00:00</span></span></div>
-        <div id="board" class="board" role="grid"></div>
-        <div class="tools"><button id="reset" class="btn">Reset</button><button id="hint" class="btn">Hint · 2</button><button id="rules" class="btn">Rules</button></div>
-        <div id="msg" class="msg" aria-live="polite">Tap × · double tap ★ · drag to mark</div>
-      </main>
-    </div>
-  </section>
-
-  <section id="replayview" class="view" hidden>
-    <div class="wrap">
-      <header class="gamehead replay-head">
-        <button id="replayBack" class="btn back" aria-label="Back">←</button>
-        <div class="gamebrand"><strong>REPLAY</strong><span id="replayMeta">Classic / 8×8</span></div>
-        <div class="meta replay-header-meta"><div><span>Time</span><b id="replayResultTime">00:00</b></div></div>
-      </header>
-      <main class="replay-page">
-        <div id="replayBoard" class="board replay-board" role="grid" aria-label="Stardoku replay board"></div>
-        <div class="replay-timeline">
-          <input id="replayProgress" type="range" min="0" max="1000" value="0" aria-label="Replay position">
-          <span id="replayClock">00:00 / 00:00</span>
+        <span class="arrow" aria-hidden="true">→</span>
+      </a>
+      <a class="tile" href="misc-htmls/helium-laptop-audio.html">
+        <div>
+          <h2>laptop audio</h2>
+          <p>how helium sends its sound to a laptop over tailscale.</p>
         </div>
-        <div class="replay-controls">
-          <button id="replayToggle" class="btn primary">Pause</button>
-          <button id="replayRestart" class="btn">Restart</button>
-          <label class="speed-control"><span>Speed</span><select id="replaySpeed" aria-label="Replay speed"><option value="2">2×</option><option value="4">4×</option><option value="8" selected>8×</option><option value="16">16×</option></select></label>
-        </div>
-        <div class="replay-actions"><button id="exportMp4" class="btn">Export MP4</button><button id="shareReplay" class="btn primary">Share replay</button></div>
-      </main>
-    </div>
-  </section>
+        <span class="arrow" aria-hidden="true">→</span>
+      </a>
+    </section>
 
-  <div id="rulesModal" class="overlay">
-    <div class="dialog">
-      <h2>How to play</h2>
-      <div class="body rules">
-        <div><b>1</b><span><b>Rows and columns</b><p>Place exactly one star in every row and column.</p></span></div>
-        <div><b>2</b><span><b>Colored regions</b><p>Place exactly one star in every pastel region.</p></span></div>
-        <div><b>3</b><span><b>Spacing</b><p>Stars cannot touch, including diagonally.</p></span></div>
-        <div><b>×2</b><span><b>Controls</b><p>Tap to toggle ×, double tap for ★, or drag across cells to paint × marks.</p></span></div>
-        <div><b>3</b><span><b>Strikes</b><p>A wrong star costs one strike. At zero, the level restarts.</p></span></div>
-      </div>
-      <div class="actions one"><button class="btn primary close-rules">Done</button></div>
-    </div>
-  </div>
-
-  <div id="complete" class="overlay">
-    <div class="dialog complete-dialog">
-      <h2>Level complete</h2>
-      <div class="body"><p id="result"></p></div>
-      <div class="share-actions"><button id="copyLink" class="btn">Copy level link</button><button id="shareChallenge" class="btn primary">Share challenge</button></div>
-      <div class="actions"><button id="completeHome" class="btn">Home</button><button id="next" class="btn primary">Next level</button></div>
-    </div>
-  </div>
-
-  <div id="exportModal" class="overlay">
-    <div class="dialog export-dialog">
-      <h2>MP4 ready</h2>
-      <div class="actions"><button id="closeExport" class="btn">Close</button><a id="saveMp4" class="btn primary link-btn" href="#" download>Save MP4</a></div>
-    </div>
-  </div>
-
-  <div id="toast" class="toast"></div>
-  <script src="app.js?v=7"></script>
+    <p class="section-label">files</p>
+    <nav class="admin" aria-label="source files">
+      <a href="misc-htmls/helium-laptop-audio.md">
+        <span class="name">markdown</span>
+        <span class="desc">plain-text write-up</span>
+      </a>
+      <a href="https://github.com/jackmhny/temphtml">
+        <span class="name">github</span>
+        <span class="desc">source repository</span>
+        <span class="access">public</span>
+      </a>
+    </nav>
+  </main>
 </body>
 </html>

@@ -1,0 +1,49 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#ffffff">
+  <title>Helium laptop audio — temphtml</title>
+  <link rel="stylesheet" href="../style.css">
+</head>
+<body>
+  <main>
+    <nav class="crumbs" aria-label="breadcrumb"><a href="../">temphtml</a> / misc htmls</nav>
+
+    <header class="article-header">
+      <p class="section-label">audio / tailscale</p>
+      <h1>helium, from the laptop speakers</h1>
+      <p class="dek">One desktop shortcut makes one application send its sound across the tailnet—without changing the desktop's default output.</p>
+    </header>
+
+    <article>
+      <div class="flow" aria-label="audio route">
+        <div><strong>shortcut</strong><span>Helium (Laptop Audio)</span></div>
+        <div><strong>wrapper</strong><span>sets PULSE_SERVER</span></div>
+        <div><strong>tailscale</strong><span>100.64.0.9</span></div>
+        <div><strong>receiver</strong><span>PipeWire / PulseAudio</span></div>
+        <div><strong>speakers</strong><span>saxtonhale</span></div>
+      </div>
+
+      <h2>the sending side</h2>
+      <p>The desktop entry runs <code>helium-laptop-audio</code>. That wrapper sets <code>PULSE_SERVER=tcp:100.64.0.9</code>, then replaces itself with Helium. Because Helium inherits the variable, its PulseAudio-compatible output goes to the laptop instead of the local speakers.</p>
+      <p>The launcher respects an existing <code>PULSE_SERVER</code> override. It looks for <code>helium</code>, then <code>Helium</code>, then the first installed Flatpak whose application ID contains “helium.”</p>
+
+      <h2>the receiving side</h2>
+      <p>On <code>saxtonhale</code>, a user service starts after <code>pipewire-pulse.service</code>. Its script asks <code>pactl</code> to load <code>module-native-protocol-tcp</code>, bound to the laptop's Tailscale address. The script stays alive so the module stays loaded, and unloads it when the service stops.</p>
+
+      <div class="note">
+        <p><strong>The boundary is Tailscale.</strong> The PulseAudio module uses anonymous protocol authentication, but it listens only on <code>100.64.0.9</code> and accepts the Tailscale address range <code>100.64.0.0/10</code>. The audio protocol is therefore carried inside the encrypted tailnet.</p>
+      </div>
+
+      <h2>what it is—and is not</h2>
+      <p>This is a direct PulseAudio-protocol stream, not an SSH tunnel, Bluetooth connection, or system-wide output change. Only Helium inherits the remote server setting. The brittle part is the hard-coded address: if the laptop's Tailscale IP changes, the launcher and receiver must be updated together.</p>
+    </article>
+
+    <footer class="page-footer">
+      <a href="helium-laptop-audio.md">read the Markdown source</a>
+    </footer>
+  </main>
+</body>
+</html>
