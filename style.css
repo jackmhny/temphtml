@@ -78,25 +78,6 @@ h1 {
   background: var(--panel);
 }
 
-.post-meta,
-.artifact-meta {
-  min-height: 32px;
-  padding: 7px 10px;
-  border-bottom: 1px solid var(--line);
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  color: var(--muted);
-  font: 10px ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
-  letter-spacing: .08em;
-  text-transform: uppercase;
-}
-
-.pin-label {
-  color: var(--ink);
-  font-weight: 800;
-}
-
 .post-link {
   min-height: 182px;
   padding: 18px;
@@ -184,14 +165,6 @@ h1 {
   height: 7px;
   border: 1px solid #888;
   background: var(--bg);
-}
-
-.artifact-meta {
-  min-height: 29px;
-  padding: 6px 9px;
-  border-bottom-color: #bbb;
-  color: #777;
-  font-size: 9px;
 }
 
 .artifact-body {
@@ -293,18 +266,6 @@ h1 {
 }
 
 .more-empty p + p { margin-top: 5px; }
-
-.board-footer {
-  padding-top: 12px;
-  border-top: 2px solid var(--line);
-  display: flex;
-  justify-content: space-between;
-  gap: 16px;
-  color: var(--muted);
-  font-size: 11px;
-}
-
-.board-footer a { color: inherit; text-underline-offset: 3px; }
 
 .crumbs {
   margin: 0 0 30px;
