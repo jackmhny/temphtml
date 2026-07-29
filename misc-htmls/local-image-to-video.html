@@ -1,0 +1,67 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#ffffff">
+  <title>Local image to video — temphtml</title>
+  <link rel="stylesheet" href="../style.css">
+</head>
+<body>
+  <main>
+    <nav class="crumbs" aria-label="breadcrumb"><a href="../">temphtml</a> / misc htmls</nav>
+
+    <header class="article-header">
+      <p class="section-label">codex / local ai video</p>
+      <h1>from one image to a few seconds of motion</h1>
+      <p class="dek">A machine-specific recommendation for making three-to-five-second clips locally on an RTX 4070.</p>
+    </header>
+
+    <article>
+      <div class="note">
+        <p><strong>The decision:</strong> use native ComfyUI with the Wan 2.2 TI2V-5B workflow. It is the best balance of quality, VRAM fit, and maintained setup for this machine.</p>
+      </div>
+
+      <h2>why it fits</h2>
+      <p>The desktop has an RTX 4070 with 12 GB of VRAM, a Core i7-14700KF, 32 GB of RAM, and FFmpeg already installed. ComfyUI's native Wan 2.2 5B workflow is documented to fit within 8 GB of VRAM through model offloading, leaving useful headroom on this card.</p>
+      <p>The workflow produces image-conditioned 720p video at 24 FPS without custom nodes. That makes it a more practical starting point than current 14B–22B video models, which would require aggressive quantization, heavier offloading, and much longer generation times.</p>
+
+      <h2>the two blockers</h2>
+      <ul>
+        <li><strong>NVIDIA driver mismatch.</strong> Updated 595.84 userspace components were paired with a running 595.71.05 kernel module, so <code>nvidia-smi</code> failed. Reboot first, then verify the driver before installing anything.</li>
+        <li><strong>Disk space.</strong> Only about 11 GB was free. The three required model files total roughly 18.15 GB before ComfyUI, PyTorch, downloads, and outputs. Free at least 35 GB; 50 GB is comfortable.</li>
+      </ul>
+
+      <h2>the short-clip workflow</h2>
+      <ol>
+        <li>Install ComfyUI and its native Wan 2.2 TI2V-5B model, text encoder, and VAE.</li>
+        <li>Open the Wan 2.2 5B video template and enable its bypassed <code>Load Image</code> node.</li>
+        <li>Use 73 frames for about three seconds or 121 frames for about five seconds at 24 FPS.</li>
+        <li>Write a motion-first prompt describing subject movement, environmental movement, and camera behavior.</li>
+        <li>Start with the template's 1280×704 landscape or 704×1280 portrait size and expect minutes—not real time—per result.</li>
+      </ol>
+
+      <h2>alternatives</h2>
+      <p><strong>FramePack</strong> has the simplest dedicated upload-and-prompt interface and supports relatively low VRAM, but its model downloads exceed 30 GB and its design is aimed more at progressively generating longer clips.</p>
+      <p><strong>LTX-Video 2B Distilled</strong> is smaller and faster, making it useful for previews, but the expected quality is below Wan 2.2 5B. <strong>HunyuanVideo 1.5</strong> lists a 14 GB minimum with offloading, so it misses this card's 12 GB ceiling.</p>
+
+      <h2>result</h2>
+      <p>No software was installed during the conversation. The correct next move was to reboot, confirm <code>nvidia-smi</code>, free storage, and only then install ComfyUI and the three Wan files.</p>
+
+      <h2>sources</h2>
+      <ul>
+        <li><a href="https://docs.comfy.org/tutorials/video/wan/wan2_2">ComfyUI Wan 2.2 workflow guide</a></li>
+        <li><a href="https://github.com/Wan-Video/Wan2.2">Wan 2.2 repository</a></li>
+        <li><a href="https://github.com/Comfy-Org/ComfyUI">ComfyUI installation</a></li>
+        <li><a href="https://github.com/lllyasviel/framepack">FramePack</a></li>
+        <li><a href="https://github.com/Lightricks/LTX-Video">LTX-Video</a></li>
+        <li><a href="https://github.com/Tencent-Hunyuan/HunyuanVideo-1.5">HunyuanVideo 1.5</a></li>
+      </ul>
+    </article>
+
+    <footer class="page-footer">
+      Conversation snapshot: 29 July 2026 · <code>019fad58-8c54-73c3-a505-9134f39fe576</code>
+    </footer>
+  </main>
+</body>
+</html>
