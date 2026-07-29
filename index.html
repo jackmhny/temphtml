@@ -11,39 +11,66 @@
   <main>
     <header class="site-header">
       <span class="site-mark" aria-hidden="true">~/</span>
-      <h1>temphtml</h1>
+      <div>
+        <h1>temphtml</h1>
+        <p class="site-description">pinned projects and loose artifacts.</p>
+      </div>
     </header>
 
-    <p class="section-label">play / read</p>
-    <section class="primary" aria-label="projects">
-      <a class="tile" href="stardoku/">
-        <div>
-          <h2>stardoku</h2>
-          <p>a one-star-per-row puzzle with generated boards, replays, and challenges.</p>
+    <p class="section-label">pinned</p>
+    <section class="board" aria-label="pinned projects">
+      <article class="post pinned-post">
+        <div class="post-meta">
+          <span class="pin-label">■ pinned</span>
+          <span>project</span>
+          <span>no. 0001</span>
         </div>
-        <span class="arrow" aria-hidden="true">→</span>
-      </a>
-      <a class="tile" href="misc-htmls/helium-laptop-audio.html">
-        <div>
-          <h2>laptop audio</h2>
-          <p>how helium sends its sound to a laptop over tailscale.</p>
-        </div>
-        <span class="arrow" aria-hidden="true">→</span>
-      </a>
+        <a class="post-link" href="stardoku/">
+          <span class="post-thumb" aria-hidden="true">★</span>
+          <span class="post-copy">
+            <strong>stardoku</strong>
+            <span>a one-star-per-row puzzle with generated boards, replays, and challenges.</span>
+            <small>open project →</small>
+          </span>
+        </a>
+      </article>
     </section>
 
-    <p class="section-label">files</p>
-    <nav class="admin" aria-label="source files">
-      <a href="misc-htmls/helium-laptop-audio.md">
-        <span class="name">markdown</span>
-        <span class="desc">plain-text write-up</span>
-      </a>
-      <a href="https://github.com/jackmhny/temphtml">
-        <span class="name">github</span>
-        <span class="desc">source repository</span>
-        <span class="access">public</span>
-      </a>
-    </nav>
+    <p class="section-label">loose artifacts / newest first</p>
+    <section class="artifact-trail" aria-label="temporary artifacts">
+      <article class="artifact-post">
+        <div class="artifact-meta">
+          <span>misc chat</span>
+          <span>no. 0002</span>
+          <span>temporary</span>
+        </div>
+        <div class="artifact-body">
+          <span class="artifact-glyph" aria-hidden="true">txt</span>
+          <div>
+            <h2><a href="misc-htmls/helium-laptop-audio.html">helium laptop audio</a></h2>
+            <p>a quick trace of how one shortcut routes helium over tailscale.</p>
+            <p class="artifact-state">loose for now · next stop: <a href="#more">… more</a></p>
+          </div>
+        </div>
+      </article>
+
+      <div class="trail-fade" aria-hidden="true">
+        <span></span><span></span><span></span>
+      </div>
+
+      <details class="more-shelf" id="more">
+        <summary><strong>… more</strong><span>older / unpinned</span></summary>
+        <div class="more-empty">
+          <p>nothing archived yet.</p>
+          <p>temporary chats will collect here as the board grows; larger things may graduate into projects or folders.</p>
+        </div>
+      </details>
+    </section>
+
+    <footer class="board-footer">
+      <span>new artifacts enter the trail. pins stay put.</span>
+      <a href="https://github.com/jackmhny/temphtml">source</a>
+    </footer>
   </main>
 </body>
 </html>
