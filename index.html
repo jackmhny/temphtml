@@ -18,42 +18,25 @@
     </header>
 
     <p class="section-label">pinned</p>
-    <section class="board" aria-label="pinned projects">
-      <article class="post pinned-post">
-        <a class="post-link" href="stardoku/">
-          <span class="post-thumb" aria-hidden="true">★</span>
-          <span class="post-copy">
-            <strong>stardoku</strong>
-            <span>a one-star-per-row puzzle with generated boards, replays, and challenges.</span>
-            <small>open project →</small>
-          </span>
-        </a>
-      </article>
+    <section class="mail-list" aria-label="pinned projects">
+      <a class="mail-card pinned-card" href="stardoku/">
+        <img class="mail-thumb" src="assets/stardoku.png" alt="">
+        <span class="mail-copy">
+          <strong class="mail-subject">stardoku</strong>
+          <span class="mail-preview">Generated star puzzles with three board sizes, challenges, history, and replays.</span>
+        </span>
+      </a>
     </section>
 
-    <p class="section-label">loose artifacts / newest first</p>
-    <section class="artifact-trail" aria-label="temporary artifacts">
-      <article class="artifact-post">
-        <div class="artifact-body">
-          <span class="artifact-glyph" aria-hidden="true">txt</span>
-          <div>
-            <h2><a href="misc-htmls/helium-laptop-audio.html">helium laptop audio</a></h2>
-            <p>a quick trace of how one shortcut routes helium over tailscale.</p>
-          </div>
-        </div>
-      </article>
-
-      <div class="trail-fade" aria-hidden="true">
-        <span></span><span></span><span></span>
-      </div>
-
-      <details class="more-shelf" id="more">
-        <summary><strong>… more</strong><span>older / unpinned</span></summary>
-        <div class="more-empty">
-          <p>nothing archived yet.</p>
-          <p>temporary chats will collect here as the board grows; larger things may graduate into projects or folders.</p>
-        </div>
-      </details>
+    <p class="section-label">artifacts</p>
+    <section class="mail-list" aria-label="temporary artifacts">
+      <a class="mail-card" href="misc-htmls/helium-laptop-audio.html">
+        <img class="mail-thumb" src="assets/helium-laptop-audio.png" alt="">
+        <span class="mail-copy">
+          <strong class="mail-subject">helium laptop audio</strong>
+          <span class="mail-preview">How one desktop shortcut sends Helium audio to laptop speakers across Tailscale.</span>
+        </span>
+      </a>
     </section>
   </main>
 </body>
