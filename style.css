@@ -133,38 +133,15 @@ h1 {
 }
 
 .artifact-trail {
-  position: relative;
   margin-bottom: 34px;
-  padding-left: 28px;
-}
-
-.artifact-trail::before {
-  content: "";
-  position: absolute;
-  top: 0;
-  bottom: 54px;
-  left: 8px;
-  border-left: 1px solid #aaa;
 }
 
 .artifact-post {
-  position: relative;
   max-width: 690px;
   border: 1px solid #999;
   background: #fafafa;
   color: #444;
   opacity: .76;
-}
-
-.artifact-post::before {
-  content: "";
-  position: absolute;
-  top: 14px;
-  left: -24px;
-  width: 7px;
-  height: 7px;
-  border: 1px solid #888;
-  background: var(--bg);
 }
 
 .artifact-body {
@@ -200,15 +177,6 @@ h1 {
   font-size: 12px;
   line-height: 1.4;
 }
-
-.artifact-body .artifact-state {
-  color: #999;
-  font: 9px ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
-  letter-spacing: .04em;
-  text-transform: uppercase;
-}
-
-.artifact-state a { color: inherit; text-underline-offset: 2px; }
 
 .trail-fade {
   width: min(620px, 88%);
@@ -293,17 +261,6 @@ h1 {
   line-height: 1.45;
 }
 
-.article-header .artifact-status {
-  margin: 14px 0 0;
-  color: #888;
-  font: 9px ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
-  letter-spacing: .06em;
-  line-height: 1.4;
-  text-transform: uppercase;
-}
-
-.article-header .artifact-status a { color: inherit; text-underline-offset: 2px; }
-
 article h2 {
   margin: 34px 0 12px;
   font-size: 25px;
@@ -383,9 +340,6 @@ code {
   .site-description { max-width: 20ch; }
   .post-link { grid-template-columns: 1fr; }
   .post-thumb { min-height: 82px; }
-  .artifact-trail { padding-left: 20px; }
-  .artifact-trail::before { left: 5px; }
-  .artifact-post::before { left: -19px; }
   .artifact-body { grid-template-columns: 42px 1fr; }
   .artifact-glyph { width: 42px; height: 42px; }
 }
