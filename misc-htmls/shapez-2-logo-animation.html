@@ -1,0 +1,65 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#ffffff">
+  <title>Shapez 2 logo animation — temphtml</title>
+  <link rel="stylesheet" href="../style.css">
+</head>
+<body>
+  <main>
+    <nav class="crumbs" aria-label="breadcrumb"><a href="../">temphtml</a> / misc htmls</nav>
+
+    <header class="article-header">
+      <p class="section-label">codex / wikimedia commons</p>
+      <h1>making the Shapez 2 logo shape move</h1>
+      <p class="dek">A clean seven-second loop built from the Shapez Vortex renderer and prepared for Wikimedia Commons.</p>
+    </header>
+
+    <article>
+      <figure class="media-figure">
+        <video controls loop muted playsinline preload="metadata" poster="../assets/shapez-2-logo-shape-animation.png">
+          <source src="../assets/shapez-2-logo-shape-animation.webm" type="video/webm">
+          <a href="https://commons.wikimedia.org/wiki/File:Shapez_2_logo_shape_animation.gif">View the animation on Wikimedia Commons.</a>
+        </video>
+        <figcaption>The final loop rotates the logo shape, raises and lowers its layers, and separates it into quarters.</figcaption>
+      </figure>
+
+      <div class="note">
+        <p><strong>The result:</strong> a 512×512 animation with 140 frames at 20 FPS. The loop lasts seven seconds and returns cleanly to its first pose.</p>
+      </div>
+
+      <h2>the target</h2>
+      <p>The original Wikipedia image showed a shape from the first game. The replacement needed to show the four-layer logo shape from <em>Shapez 2</em> and make its structure clear from more than one angle.</p>
+
+      <h2>using the renderer</h2>
+      <p>The shape came from <a href="https://shapez.soren.codes/shape">Shapez Vortex</a>. Its source code defines separate progress values for moving layers vertically and pushing each quarter away from the center.</p>
+      <p>A local copy of the renderer was changed to drive those values through one timed sequence. The shape begins closed, lifts its layers, opens into quarters, lowers while open, and closes again. Its normal rotation continues through the full cycle.</p>
+
+      <h2>capturing the loop</h2>
+      <ul>
+        <li>The renderer was recorded at 512×512 and 20 frames per second.</li>
+        <li>One exact seven-second cycle was selected and aligned to a closed pose.</li>
+        <li>The frames were encoded as GIF for Wikimedia and WebM for a smaller web version.</li>
+        <li>The first and last frames were checked to keep the loop seamless.</li>
+      </ul>
+
+      <h2>publishing</h2>
+      <p>The GIF was uploaded to <a href="https://commons.wikimedia.org/wiki/File:Shapez_2_logo_shape_animation.gif">Wikimedia Commons as “Shapez 2 logo shape animation.gif”</a>. Its page includes the renderer and game-design credits, source links, MIT license, and useful categories.</p>
+      <p>An earlier upload with the wrong title was marked as a duplicate for Commons cleanup. In the open Wikipedia edit, only the media filename was corrected. The article edit was left unsubmitted for review.</p>
+
+      <h2>source</h2>
+      <ul>
+        <li><a href="https://github.com/DontMash/shapez-vortex">Shapez Vortex source code</a></li>
+        <li><a href="https://shapez.soren.codes/shape">Shapez Vortex shape viewer</a></li>
+        <li><a href="https://commons.wikimedia.org/wiki/File:Shapez_2_logo_shape_animation.gif">Final Wikimedia Commons file</a></li>
+      </ul>
+    </article>
+
+    <footer class="page-footer">
+      Completed 30 July 2026.
+    </footer>
+  </main>
+</body>
+</html>

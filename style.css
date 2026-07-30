@@ -221,6 +221,25 @@ code {
 
 .note p { margin: 0; font-size: 14px; }
 
+.media-figure {
+  max-width: 512px;
+  margin: 0 0 28px;
+}
+
+.media-figure video {
+  display: block;
+  width: 100%;
+  border: 2px solid var(--line);
+  background: #181818;
+}
+
+.media-figure figcaption {
+  margin-top: 8px;
+  color: var(--muted);
+  font-size: 12px;
+  line-height: 1.4;
+}
+
 .page-footer {
   margin-top: 38px;
   padding-top: 14px;
