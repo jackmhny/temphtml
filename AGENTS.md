@@ -4,8 +4,7 @@ These instructions apply to the entire repository.
 
 ## Read first
 
-- Read `README.md` before changing structure, publishing a page, or handling
-  private content.
+- Read `README.md` before changing structure or publishing a page.
 - Preserve unrelated user changes. Stage explicit paths.
 - This repository deploys directly from `main` through GitHub Pages.
 
@@ -24,27 +23,6 @@ These instructions apply to the entire repository.
 - Prefer removing copy and ornament over adding metadata, badges, explanations,
   or decorative UI.
 
-## Private artifacts
-
-- Decide the privacy model before writing the page:
-  - use Tailscale Serve for genuinely private, tailnet-only pages;
-  - use StatiCrypt for password-encrypted ciphertext on public GitHub Pages;
-  - use a backend/serverless relying party if real passkey authentication is
-    required.
-- Never implement a fake client-side login that compares a password in
-  JavaScript or contains a password, hash, decryption key, allowlist, or passkey
-  verification secret in the public repository.
-- Never commit plaintext private content, even temporarily. Use
-  `/home/jackmhny/private-temphtml/` or ignored `private-src/`.
-- Never ask the user to paste a private-page password into chat. Use StatiCrypt's
-  interactive prompt so it does not enter shell history.
-- Commit only encrypted output under `locked/`. Inline secret assets before
-  encryption; separately hosted files are public.
-- Do not list a private page on the public index or capture an unlocked thumbnail
-  unless the user explicitly accepts that metadata/content leak.
-- Do not claim that a passkey is supported by a static page alone. WebAuthn
-  requires server-side challenge generation and verification.
-
 ## Style
 
 - White background; `#111` ink/rules; `#666` muted text; `#f2f2f2` shade.
@@ -58,7 +36,5 @@ These instructions apply to the entire repository.
 - Parse changed HTML, check CSS brace balance, run `git diff --check`, and test
   all changed URLs through a local HTTP server.
 - Inspect desktop and mobile screenshots for layout changes.
-- Verify no plaintext private material or credential entered the diff or Git
-  history.
 - Push the intended commit to `main`, wait for GitHub Pages to deploy that exact
   SHA, and confirm public routes and assets return HTTP 200.
