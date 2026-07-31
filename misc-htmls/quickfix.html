@@ -18,10 +18,10 @@
 
     <article>
       <h2>The useful part</h2>
-      <p>Type an intent into Zsh, press Alt+O, and get one editable command back. Quickfix never runs the result. The pause for review is the product.</p>
+      <p>Type an intent into Bash, press Alt+O, and get one editable command back. Quickfix never runs the result. The pause for review is the product.</p>
 
       <div class="flow" aria-label="quickfix command flow">
-        <div><strong>intent</strong><span>plain text in the Zsh buffer</span></div>
+        <div><strong>intent</strong><span>plain text in the Bash buffer</span></div>
         <div><strong>Alt+O</strong><span>one explicit keyboard action</span></div>
         <div><strong>quickfix</strong><span>small Bash prompt wrapper</span></div>
         <div><strong>Codex</strong><span>Luna with low reasoning</span></div>
@@ -31,7 +31,7 @@
       <h2>What was deleted</h2>
       <p>Cmdsmith had ask, explain, model discovery, diagnostics, JSON output, clipboard integration, provider profiles, a direct HTTP client, packaging, and a Python dependency stack. None of that improved Alt+O, so none of it survived.</p>
 
-      <p>The runtime is now 49 lines of Bash. The Zsh widget is 32. Installation and tests are plain shell too. There is no config file, cache, database, model registry, SDK, or package manager.</p>
+      <p>The runtime is 49 lines of Bash and its default Readline widget is 24. The optional Zsh widget is 32. Installation and tests are plain shell too. There is no config file, cache, database, model registry, SDK, or package manager.</p>
 
       <h2>Why Codex owns the hard part</h2>
       <p><code>codex exec</code> already provides non-interactive output and reuses the saved Codex CLI login. That means a ChatGPT subscription can authenticate quickfix without another credential store or home-grown API client.</p>
@@ -43,13 +43,13 @@
       </div>
 
       <h2>The whole interface</h2>
-      <p>Run <code>codex login</code>, run <code>./install</code>, restart Zsh, and press Alt+O. Set <code>QUICKFIX_MODEL</code> or <code>QUICKFIX_REASONING</code> only when the defaults need changing.</p>
+      <p>Run <code>codex login</code>, run <code>./install</code>, restart Bash, and press Alt+O. Zsh remains available through <code>./install zsh</code>. Set <code>QUICKFIX_MODEL</code> or <code>QUICKFIX_REASONING</code> only when the defaults need changing.</p>
 
       <p>Source and tests live in <a href="https://github.com/jackmhny/quickfix">jackmhny/quickfix</a>. Codex authentication and non-interactive behavior are documented in the official <a href="https://learn.chatgpt.com/docs/auth">authentication</a> and <a href="https://learn.chatgpt.com/docs/non-interactive-mode">non-interactive mode</a> references.</p>
     </article>
 
     <footer class="page-footer">
-      quickfix · Bash + Zsh · MIT
+      quickfix · Bash · optional Zsh · MIT
     </footer>
   </main>
 </body>
