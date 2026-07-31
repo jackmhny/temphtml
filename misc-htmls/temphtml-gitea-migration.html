@@ -1,0 +1,96 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#ffffff">
+  <title>Moving temphtml to Gitea — temphtml</title>
+  <link rel="stylesheet" href="../style.css">
+</head>
+<body>
+  <main>
+    <nav class="crumbs" aria-label="breadcrumb"><a href="../">temphtml</a> / misc htmls</nav>
+
+    <header class="article-header">
+      <p class="section-label">plan / self-hosting</p>
+      <h1>a sturdier home for temphtml</h1>
+      <p class="dek">A staged move from GitHub Pages to Gitea, atomic releases, and the existing Caddy stack on coconut.</p>
+    </header>
+
+    <article>
+      <div class="note">
+        <p><strong>The recommendation:</strong> let Gitea own the repository and build process, but keep the public site as plain static files served by Caddy. Do not turn Gitea into the web server.</p>
+      </div>
+
+      <div class="flow" aria-label="planned publishing route">
+        <div><strong>workstation</strong><span>push main</span></div>
+        <div><strong>gitea</strong><span>source of truth</span></div>
+        <div><strong>runner</strong><span>check and build</span></div>
+        <div><strong>coconut</strong><span>atomic release</span></div>
+        <div><strong>public web</strong><span>Caddy and Cloudflare</span></div>
+      </div>
+
+      <h2>why this shape fits</h2>
+      <p>The current site is already easy to host: it is static HTML, CSS, images, video, and one small JavaScript project. The homelab already runs Docker Compose, Caddy, and a Cloudflare Tunnel on coconut. The migration can use that base instead of adding another public web stack.</p>
+      <p>Gitea should handle Git, review, and automation. A separate runner should turn each accepted commit into a release. Caddy should only read the selected release and serve it.</p>
+
+      <h2>first: move Git without moving the site</h2>
+      <ul>
+        <li>Create the repository on Gitea and copy every branch and tag from GitHub.</li>
+        <li>Add Gitea as a second local remote and compare both histories.</li>
+        <li>Protect <code>main</code> and enable repository Actions.</li>
+        <li>Leave GitHub Pages live until the new path has passed the same checks.</li>
+        <li>After cutover, keep GitHub as a read-only push mirror and backup of Git history.</li>
+      </ul>
+
+      <h2>then: deploy immutable releases</h2>
+      <p>Store each build under <code>/srv/www/temphtml/releases/&lt;commit&gt;</code> on coconut. Point <code>/srv/www/temphtml/current</code> at the active release and mount the parent directory read-only inside Caddy.</p>
+      <p>A deployment uploads a complete new directory, tests it, and switches <code>current</code> only after every check passes. A failed build never changes the live site. Keep the five newest releases so rollback is a single symlink change.</p>
+
+      <h2>make the runner prove the build</h2>
+      <ul>
+        <li>Parse every HTML file and check CSS syntax.</li>
+        <li>Validate internal links, asset paths, 640×400 thumbnails, and 80-character summaries.</li>
+        <li>Test the homepage and changed pages at desktop and 390-pixel widths.</li>
+        <li>Write a public <code>build.json</code> with the exact commit SHA.</li>
+        <li>Deploy through a restricted SSH account that can write only to the temphtml release directory.</li>
+        <li>Confirm that the public <code>build.json</code> matches Gitea <code>main</code>.</li>
+      </ul>
+      <p>Run the repository-scoped Gitea runner on a trusted machine separate from the Gitea server when practical. Do not give the job direct control of coconut's Docker socket.</p>
+
+      <h2>reduce manual page work later</h2>
+      <p>Do not combine the hosting cutover with a site rewrite. Once the new deployment path is stable, move writeups to Markdown with front matter and let a small static generator build the homepage rows automatically.</p>
+      <p>Hugo is a good fit because it is a mature single binary. The existing Coconut-derived CSS can stay unchanged, and standalone projects such as Stardoku can remain passthrough static directories. Old HTML pages can be migrated one at a time.</p>
+
+      <h2>back up what cannot be rebuilt</h2>
+      <p>The published site can always be rebuilt from Git. The Gitea database, repositories, configuration, attachments, and secrets need separate off-host backups. Keep the GitHub mirror, copy Gitea backups away from coconut, and test a restore on a schedule.</p>
+      <p>Monitor the public homepage, one representative asset, and <code>build.json</code>. An alert should fire when the site is unavailable or the deployed SHA differs from Gitea <code>main</code>.</p>
+
+      <h2>cut over without a cliff</h2>
+      <ul>
+        <li>Bring up <code>temphtml.mhny.dev</code> beside the GitHub Pages site.</li>
+        <li>Compare every current route and run desktop and mobile visual checks.</li>
+        <li>Switch links to the new hostname only after parity is confirmed.</li>
+        <li>Keep GitHub Pages available for two to four weeks.</li>
+        <li>Retain GitHub as a mirror or replace the old Pages site with redirects.</li>
+      </ul>
+
+      <h2>done means</h2>
+      <p>A push to Gitea <code>main</code> publishes the exact tested commit. Failed checks leave the old release online. Rollback takes one command. No secret enters Git history. The site works without GitHub, and Gitea can be restored from an off-host backup.</p>
+
+      <h2>references</h2>
+      <ul>
+        <li><a href="https://docs.gitea.com/usage/actions">Gitea Actions</a></li>
+        <li><a href="https://docs.gitea.com/usage/actions/act-runner">Gitea runner setup and security notes</a></li>
+        <li><a href="https://docs.gitea.com/usage/repository/repo-mirror">Gitea repository mirrors</a></li>
+        <li><a href="https://docs.gitea.com/usage/backup-and-restore">Gitea backup and restore</a></li>
+        <li><a href="https://caddyserver.com/docs/caddyfile/directives/file_server">Caddy file server</a></li>
+      </ul>
+    </article>
+
+    <footer class="page-footer">
+      Plan prepared 31 July 2026. No server configuration has been changed.
+    </footer>
+  </main>
+</body>
+</html>
