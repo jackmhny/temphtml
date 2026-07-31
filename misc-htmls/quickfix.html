@@ -18,7 +18,7 @@
 
     <article>
       <h2>The useful part</h2>
-      <p>Type an intent into Bash, press Alt+O, and get one editable command back. Quickfix never runs the result. The pause for review is the product.</p>
+      <p>Type an intent into Bash, press Alt+O, and get one editable command back. While Codex works, the intent stays visible and a throbber animates on the next line. Quickfix never runs the result. The pause for review is the product.</p>
 
       <div class="flow" aria-label="quickfix command flow">
         <div><strong>intent</strong><span>plain text in the Bash buffer</span></div>
@@ -31,7 +31,7 @@
       <h2>What was deleted</h2>
       <p>Cmdsmith had ask, explain, model discovery, diagnostics, JSON output, clipboard integration, provider profiles, a direct HTTP client, packaging, and a Python dependency stack. None of that improved Alt+O, so none of it survived.</p>
 
-      <p>The runtime is 49 lines of Bash and its default Readline widget is 24. The optional Zsh widget is 32. Installation and tests are plain shell too. There is no config file, cache, database, model registry, SDK, or package manager.</p>
+      <p>The runtime is 49 lines of Bash and its default Readline widget is 45. The optional Zsh widget is 32. Installation and tests are plain shell too. There is no config file, cache, database, model registry, SDK, or package manager.</p>
 
       <h2>Why Codex owns the hard part</h2>
       <p><code>codex exec</code> already provides non-interactive output and reuses the saved Codex CLI login. That means a ChatGPT subscription can authenticate quickfix without another credential store or home-grown API client.</p>
